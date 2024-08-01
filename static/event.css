@@ -1,0 +1,233 @@
+:root{
+    --main-color:rgb(208, 22, 66);
+}
+*{
+    font-family: Comic sans MS;
+    margin: 0;padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s liner;
+    
+}
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 7rem;
+    scroll-behavior: smooth;
+}
+html::-webkit-scrollbar{
+    width: 1rem;
+}
+html::-webkit-scrollbar-track{
+    background-color: pink;
+}
+html::-webkit-scrollbar-thumb{
+    background: var(--main-color);
+    border-radius: 5rem;
+}
+body{
+    background-color: rgb(196, 192, 192);
+}
+
+section{
+    padding: 2rem 9%;
+}
+.header{
+    position: fixed;
+    top:0;left:0;right:0;
+    z-index:10000;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2%;
+}
+.header .logo{
+    font-weight: bolder;
+    color: rgb(208, 22, 66);
+    font-size: 3rem;
+    text-decoration: none;
+}
+.header .navbar a{
+    font-size: 1.7rem;
+    color: white;
+    margin-right: 2rem;
+    text-decoration: none;
+}
+
+
+.header .navbar a:hover{
+    color: rgb(208, 22, 66);
+    
+}
+#menu-bars{
+    font-size: 2.5rem;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: none;
+}
+
+.home .content{
+    text-align: center;
+    padding-top: 4rem;
+    margin: 2rem auto;
+    max-width: 70rem;
+}
+
+.home .content h3{
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+.home .content span{
+    font-size: 5rem;
+    font-weight: normal;
+    color: rgb(208, 22, 66);
+}
+.home .content .e{
+    font-size: 4rem;
+    color: rgb(0, 0, 0);
+}
+
+
+.to_be_verified{
+    height: fit-content;
+    width: fit-content;
+    border-radius: 1rem;
+    font-size: 3.5rem;
+    padding: 1rem;
+    background-color: rgb(197, 31, 31);
+}
+
+.verified{
+    height: fit-content;
+    width: fit-content;
+    border-radius: 1rem;
+    background-color: green;
+    font-size: 3.5rem;
+    padding: 1rem;
+}
+.btns{
+    margin-top: 20%;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.verified:hover{
+    background-color: rgb(242, 233, 233);
+    color: green;
+}
+
+.to_be_verified:hover{
+    background-color: rgb(242, 233, 233);
+    color: rgb(197, 31, 31);
+}
+
+.heading{
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+table{
+    border: 2rem solid black;
+    padding: 1rem;
+    width: 100%;
+    border: 2px solid black;
+}
+
+tr,td,th{
+    border: 2rem solid black;
+    text-align: left;
+    padding: .5rem;
+    font-size: 2rem;
+}
+
+.btns{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 3rem;
+    
+}
+
+.btn:hover button{
+    transform:scale(1.05);
+
+}
+
+.verify{
+    background-color: green;
+}
+.verify,.delete{
+    width: fit-content;
+    height: fit-content;
+    padding: .5rem;
+    font-size: 2.5rem;
+    border-radius: 1rem;
+}
+.delete{
+    background-color: rgb(151, 18, 18);
+}
+
+@media (max-width:991px){
+    html{
+        font-size: 55%;
+    }
+
+    .header{
+        padding: 1rem 1rem;
+    }
+
+    section{
+        padding: 2rem;
+    }
+}
+
+@media (max-width:768px){
+
+    #menu-bars{
+        display: initial;
+    }
+
+    .header .navbar{
+        position: absolute;
+        top: 100%; left:0; right:0;
+        border-top: .1rem solid #222;
+        background: #333;
+        clip-path: polygon(0 0,100% 0,100% 0, 0 0);
+    }
+
+    .header .navbar a{
+        display: flex;
+        background: #222;
+        border-radius: .5rem;
+        padding: 1rem;
+        margin: 1rem;
+        font-size: 2rem;
+        width: 100%;
+    }
+
+    .header .navbar.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .fa-times{
+        transform: rotate(180deg);
+    }
+
+    .home .content h3{
+        font-size: 3rem;
+    }
+}
+@media (max-width:450px){
+    html{
+        font-size: 50%;
+    }
+
+    .home .home-slider .swiper-slide{
+        width: 27rem;
+    }
+
+}

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equi="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='eop.css')}}">
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <script>
+            function validateForm() {
+              var x = document.forms.form.ename.value;
+              var a = document.forms.form.timings.value;
+              var b = document.forms.form.faculty.value;
+              var d = document.forms.form.venue.value;
+              var e = document.forms.form.ev.value;
+              var f = document.getElementById("poster").value;
+              
+
+                if(f==''){
+                    document.getElementById("poster_error");
+                    poster.focus();
+                    return false;
+                }
+                if ( document.getElementById("desc")=='') {
+                document.getElementById("desc_error").innerHTML = "must be filled";
+                desc.focus();
+                return false;
+              }
+              if ( !(document.getElementById("cse").checked || document.getElementById("ece").checked || document.getElementById("eee").checked || document.getElementById("it").checked || document.getElementById("cs").checked || document.getElementById("mech").checked || document.getElementById("civil").checked)) {
+                document.getElementById("branch_error").innerHTML = "must be filled";
+                return false;
+              }
+              
+              if ( !(document.getElementById("cle").checked || document.getElementById("ble").checked)) {
+                document.getElementById("ev_error").innerHTML = "must be filled";
+                return false;
+              }
+            return true;
+            }
+            </script>
+    </head>
+    <body>
+
+        <!--header-->
+        <header class="header">
+            <a herf="#" class="logo">SEC</a>
+
+            <nav class="navbar">
+                <a href="{{ url_for('OrganizerHome')}}">Home</a>
+                <a href="#notifications">Notifications</a>
+                <a href="#profile">Logout</a>
+                <a href="#settings">Settings</a>
+                
+            </nav>
+            
+            <div id="menu-bars" class="fas fa-bars"></div>
+        </header>
+        <!-- home -->
+        <section class="home" id="home">
+            <div class="content">
+                <h3>Welcome to <span>S</span>tudent <span>E</span>vent <span>C</span>alander <span class="e">!</span></h3>
+            </div>
+            <div class="oae">Organising an event?</div>
+        </section >
+        
+        <section class="form" id="form">
+            <form action="{{ url_for('collectFormData')}}" method="post" enctype="multipart/form-data">
+                <div>
+                    <label class="required" for="ename">Event name:</label><br>
+                    <span id="ename_error" style="font-size: 1.5rem; color: rgb(207, 43, 43);font-weight: normal;"></span>
+                    <input type="text" id="ename" name="ename" placeholder="SEC event" class="form-control" required><br>
+                    </div>
+                    <div class="poster">
+                        <label class="required"  id="poster" for="poster">Poster please:</label><br>
+                        <span id="poster_error" style="font-size: 1.5rem; color: rgb(207, 43, 43);font-weight: normal;"></span>
+                        <input id="poster" name="file" type="file" accept="image/*;capture=camera" required><br>
+                    </div>
+                    <div>
+                        <label class="required" for="desc">Desription:</label><br>
+                        <span id="desc_error" style="font-size:medium; color: rgb(207, 43, 43);font-weight: normal;"></span>
+                        <textarea id="desc" name="desc" rows="8" cols="50" class="form-control" style="font-size:12px" required>
+                        </textarea><br>
+                    </div>
+            
+                        <div>
+                            <label class="required" for="timings">Timings:</label><br>
+                            <span id="timing_error" style="font-size: 1.5rem; color: rgb(207, 43, 43);font-weight: normal;"></span>
+                            <input style="border: 1rem;border:.2rem solid rgb(208, 22, 66);border-radius: .6rem;padding: .2rem;" type="date" id="timings" name="timings" required><br><br>
+                
+                            </div>
+                <div>
+                    <label for="organisers" style="font-size: 2.8rem;font-weight: bolder;">Organisers:</label><br><br>
+                    <div>
+                        <label class="required" for="faculty">Faculty:</label><br>
+                        <span id="faculty_error" style="font-size: 1.5rem; color: rgb(207, 43, 43);font-weight: normal;"></span>
+                        <input type="text" id="faculty" name="faculty" class="form-control"><br>
+                        </div>
+                    <div>
+                            <label for="contact">Contact Number:</label>
+                            <input style="border: 1rem;border:.2rem solid rgb(208, 22, 66);border-radius: .6rem;padding: .2rem;" class="contact" type="number" id="contact" placeholder="9957685478" name="contact" pattern="[6-9]{1}-[0-9]{9}" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label class="required" for="branch">Branch:</label>
+                        <span id="branch_error" style="font-size: 1.5rem; color: rgb(207, 43, 43);font-weight: normal;"></span><br>
+                        <input type="radio" id="cse" name="branch" value="cse">
+                        <label for="cse"> CSE</label><br>
+                        <input type="radio" id="it" name="branch" value="it">
+                        <label for="it"> IT</label><br>
+                        <input type="radio" id="cs" name="branch" value="cs">
+                        <label for="cse"> CS</label><br>
+                        <input type="radio" id="ece" name="branch" value="ece">
+                        <label for="cse"> ECE</label><br>
+                        <input type="radio" id="eee" name="branch" value="eee">
+                        <label for="cse"> EEE</label><br>
+                        <input type="radio" id="mech" name="branch" value="mech">
+                        <label for="cse"> Mech</label><br>
+                        <input type="radio" id="civil" name="branch" value="civil">
+                        <label for="civil"> Civil</label><br><br>
+                        </div>
+                        </div>
+                        <div>
+                            <label class="required" for="venue">Venue:</label><br>
+                            <span id="venue_error" style="font-size: 1.5rem; color: rgb(207, 43, 43);font-weight: normal;"></span>
+                            <textarea id="venue" name="venue" rows="3" cols="50" class="form-control" required></textarea><br>
+                        </div>
+                        <label class="required" class="ev" for="ev">Event Type:</label><br>
+                        <span id="ev_error" style="font-size: 1.5rem; color: rgb(207, 43, 43);font-weight: normal;"></span><br>
+                        <div class="eventtype">
+            
+                        <div>
+                        <input type="radio" class="cle" id="cle" name="ev" value="cle">
+                        <label for="cle" class="cle"> College Level Event</label><br>
+                        </div>
+                        <div>
+                        <input type="radio" class="ble" id="ble" name="ev" value="ble">
+                        <label for="ble" class="ble"> Branch Level Event</label><br><br>
+                        </div>
+                    </div>
+                <div>
+                    <input type="submit" class="btn" value="Submit">
+                </div>
+                
+            </form> 
+        </section>
+
+
+
+        
+  
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script src="{{ url_for('static',filename='script.js')}}"></script>
+        <script>
+
+var myInput = document.getElementById('myFileInput');
+
+function sendPic() {
+    var file = myInput.files[0];
+
+}
+
+myInput.addEventListener('change', sendPic, false);
+
+        </script>
+        
+    
+        
+    </body>
+</html>
